@@ -6,6 +6,11 @@ $.TweetCompose = function (el) {
   this.$textarea.on("keypress", this.charsLeft.bind(this));
   this.$ul = $(this.$el.data("tweets-ul"));
   $('a.add-mentioned-user').on('click', this.addMentionedUser.bind(this));
+  this.$el.on("click", "a.remove-mentioned-user", this.removeMentionedUser.bind(this));
+};
+
+$.TweetCompose.prototype.removeMentionedUser = function (event) {
+  $(event.currentTarget).parent().remove();
 };
 
 $.TweetCompose.prototype.addMentionedUser = function (event) {
@@ -49,6 +54,7 @@ $.TweetCompose.prototype.handleSuccess = function(response) {
 };
 
 $.TweetCompose.prototype.clearInput = function () {
+  $('div.mentioned-users').empty();
   this.$inputs = this.$el.find(":input");
   for (var i = 0; i < this.$inputs.length; i++) {
     if (!($(this.$inputs[i]).attr('type') === 'Submit')) {
