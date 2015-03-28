@@ -3,6 +3,11 @@
 <b>Your Feed!</b>
 <div class="infinite-tweets">
   <ul id="feed"></ul>
+  <script type="text/template" class="tweets">
+    <%% _(tweets).forEach(function (tweet) { %>
+      <li><%%= (tweet.user.username + ": " + tweet.content) %></li> <!-- IMPROVE LI?? -->
+    <%% }); %>
+  </script>
   <a href="javascript:void(0)" class="fetch-more">Fetch More Tweets!</a>
 </div>
 

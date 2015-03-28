@@ -28,11 +28,10 @@ $.InfiniteTweets.prototype.replaceLink = function () {
 
 
 $.InfiniteTweets.prototype.insertTweets = function (tweets) {
-  for (var i = 0; i < tweets.length; i++) {
-    var tweet = JSON.stringify(tweets[i]);
-    var $tweet = "<li>" + tweet + "</li>";
-    this.$ul.append($tweet);
-  }
+  var templateCode = $('script.tweets').html();
+  var templateFn = _.template(templateCode);
+  var renderedContent = templateFn({tweets: tweets});
+  this.$ul.append(renderedContent);
 };
 
 $.fn.infiniteTweets = function () {
